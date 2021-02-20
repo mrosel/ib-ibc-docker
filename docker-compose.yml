@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  tws:
+    build: .
+    # restart: always
+    ports:
+      # - "4003:4003"
+      - "5901:5900"
+    # volumes: 
+    #   - ./ib/jts.ini:/root/Jts/ibgateway/978/jts.ini
+    #   - ./ib/ibgateway.vmoptions:/root/Jts/ibgateway/978/ibgateway.vmoptions
+
+    environment:
+      - TZ=America/New_York
+      - VNC_PASSWORD=1234 # CHANGEME
