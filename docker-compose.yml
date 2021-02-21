@@ -4,7 +4,8 @@ services:
     build: .
     # restart: always
     ports:
-      # - "4003:4003"
+      - "4002:4002"
+      - "4003:4003"
       - "5901:5900"
     # volumes: 
     #   - ./ib/jts.ini:/root/Jts/ibgateway/978/jts.ini
@@ -13,3 +14,21 @@ services:
     environment:
       - TZ=America/New_York
       - VNC_PASSWORD=1234 # CHANGEME
+
+      # required for ibc
+      - TWS_MAJOR_VRSN=981
+      - LOG_PATH=~/ibc/logs
+      - IBC_INI=/opt/ibc/config.ini
+      - IBC_PATH=/opt/ibc
+
+      # optional for IBC
+      # - JAVA_PATH=/usr/local/i4j_jres/1.8.0_152-tzdata2019c/bin # JRE is bundled starting with TWS 
+      - TWOFA_TIMEOUT_ACTION=exit
+      - TRADING_MODE=paper
+      # - TWS_PATH=~/Jts
+      # - TWS_SETTINGS_PATH=
+      - TWSUSERID=demo
+      # - TWSPASSWORD=
+      # - FIXUSERID=
+      # - FIXPASSWORD=
+      # - HIDE=      

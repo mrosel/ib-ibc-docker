@@ -1,0 +1,28 @@
+# cat /root/Jts/ibgateway/981/ibgateway.vmoptions 
+
+# maximum Java heap size
+-Xmx768m
+
+# GC settings
+-XX:+UseG1GC
+-XX:MaxGCPauseMillis=200
+-XX:ParallelGCThreads=20
+-XX:ConcGCThreads=5
+-XX:InitiatingHeapOccupancyPercent=70
+
+-Dinstaller.uuid=c8f86021-838d-4c10-aa5e-b35832997087
+-DvmOptionsPath=/root/Jts/ibgateway/981/ibgateway.vmoptions
+-Dsun.awt.nopixfmt=true
+-Dsun.java2d.noddraw=true
+-Dswing.boldMetal=false
+-Dsun.locale.formatasdefault=true
+
+
+-XX:+UseStringDeduplication
+# Allocate at most half of the VM total ram inside the JVM heap
+-XX:MaxRAMFraction=2
+
+-XX:+ExitOnOutOfMemoryError
+-XX:+UnlockExperimentalVMOptions
+-XX:+UseCGroupMemoryLimitForHeap 
+-Dprism.verbose=true

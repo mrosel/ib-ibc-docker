@@ -1,38 +1,31 @@
-# xvfb-run firefox http://google.com
-
-
-# export DISPLAY=${DISPLAY:-:0} # Select screen 0 by default.
-# xdpyinfo
-# if which x11vnc &>/dev/null; then
-#   ! pgrep -a x11vnc && x11vnc -bg -forever -nopw -quiet -display WAIT$DISPLAY &
-# fi
-# ! pgrep -a Xvfb && Xvfb $DISPLAY -screen 0 1024x768x16 &
-# sleep 1
-# if which fluxbox &>/dev/null; then
-#   ! pgrep -a fluxbox && fluxbox 2>/dev/null &
-# fi
-# echo "IP: $(hostname -I) ($(hostname))"
-
-
-
-# 1. set VNC_PASSWORD
 mkdir -p /.vnc
 touch /.vnc/x11vnc.log 
 x11vnc -storepasswd "$VNC_PASSWORD" /.vnc/passwd > /dev/null
 
-# export DISPLAY=:1
 Xvfb $DISPLAY -screen 0 1280x1024x16 &
-
-firefox &
-
-
 x11vnc -display $DISPLAY -forever -quiet -bg -nopw  -xkb -rfbauth /.vnc/passwd -o /.vnc/x11vnc.log
 
-# x11vnc -o /.vnc/x11vnc.log  -ncache 10 -display :0.0 -usepw -create -env FD_PROG=/usr/bin/fluxbox \
-#     -env X11VNC_FINDDISPLAY_ALWAYS_FAILS=1 \
-#     -env X11VNC_CREATE_GEOM=${0:-1024x768x16} \
-#     -gone 'killall Xvfb' \
-#     -bg -nopw
 
+# xvfb-run firefox http://google.com # run in background
+# firefox http://google.com &
+# /root/Jts/ibgateway/981/ibgateway &
+# /root/Jts/981/tws &
 
-tail -f /.vnc/x11vnc.log
+/opt/ibc/scripts/displaybannerandlaunch.sh & 
+sleep 1
+tail -f $(find $LOG_PATH -maxdepth 1 -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d' ' -f 2-) &
+
+tail -f /.vnc/x11vnc.log &
+sleep 1
+touch /root/Jts/launcher.log
+tail -f /root/Jts/launcher.log &
+
+echo "Forking :::4002 onto 0.0.0.0:4003\n" # 
+socat TCP-LISTEN:4003,fork TCP:127.0.0.1:4002 
+
+# sleep 1
+# while true ; do
+#   nc -z localhost 5901 # || exit -1
+#   nc -z localhost 4002 # || exit -1
+#   sleep 30
+# done
