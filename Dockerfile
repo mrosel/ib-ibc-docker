@@ -22,12 +22,12 @@ RUN microdnf install firefox
 # USER tws
 # WORKDIR /home/tws
 
-# ADD ib/installer.sh ./installer.sh
-# RUN sh ./installer.sh
+ADD ib/installer.sh ./installer.sh
+RUN sh ./installer.sh
 
-ADD ib/execs/ibgateway-latest-standalone-linux-x64.sh ./
-RUN chmod a+x ibgateway-latest-standalone-linux-x64.sh && \
-    printf "\n n" | ./ibgateway-latest-standalone-linux-x64.sh 
+# ADD ib/execs/ibgateway-latest-standalone-linux-x64.sh ./
+# RUN chmod a+x ibgateway-latest-standalone-linux-x64.sh && \
+#     printf "\n n" | ./ibgateway-latest-standalone-linux-x64.sh 
 
 
 ADD ib/jts.ini /root/Jts/
