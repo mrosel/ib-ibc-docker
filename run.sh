@@ -8,9 +8,8 @@ x11vnc -display $DISPLAY -forever -quiet -bg -nopw  -xkb -rfbauth /.vnc/passwd -
 
 # xvfb-run firefox http://google.com # run in background
 # firefox http://google.com &
-# /root/Jts/ibgateway/981/ibgateway &
 # /root/Jts/981/tws &
-
+# /root/Jts/ibgateway/981/ibgateway &
 /opt/ibc/scripts/displaybannerandlaunch.sh & 
 sleep 1
 tail -f $(find $LOG_PATH -maxdepth 1 -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d' ' -f 2-) &

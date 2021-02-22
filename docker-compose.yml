@@ -20,6 +20,7 @@ services:
       - LOG_PATH=~/ibc/logs
       - IBC_INI=/opt/ibc/config.ini
       - IBC_PATH=/opt/ibc
+      - APP=GATEWAY
 
       # optional for IBC
       # - JAVA_PATH=/usr/local/i4j_jres/1.8.0_152-tzdata2019c/bin # JRE is bundled starting with TWS 
@@ -27,8 +28,8 @@ services:
       - TRADING_MODE=paper
       # - TWS_PATH=~/Jts
       # - TWS_SETTINGS_PATH=
-      - TWSUSERID=demo
-      # - TWSPASSWORD=
+      - TWSUSERID=${TWSUSERID}
+      - TWSPASSWORD=${TWSPASSWORD}
       # - FIXUSERID=
       # - FIXPASSWORD=
       # - HIDE=      

@@ -1,4 +1,4 @@
-# /usr/local/tws/tws.vmoptions 
+# 
 #
 # This file contains VM parameters for Trader Workstation 981.
 # Each parameter should be defined in a separate line and the
@@ -13,10 +13,10 @@
 #
 
 # maximum Java heap size
--Xmx768m
+# -Xmx768m
 
 # Increase heap allocations
-# -Xmx1536m
+-Xmx1536m
 
 # GC settings
 -XX:+UseG1GC
